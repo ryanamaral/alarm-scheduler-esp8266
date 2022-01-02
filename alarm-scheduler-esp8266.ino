@@ -12,16 +12,13 @@
 #include <DNSServer.h>
 #include <ESP8266mDNS.h>
 #include <TimeLib.h> // https://github.com/PaulStoffregen/Time (v1.6.1)
-#include "TimeAlarmsESP8266.h"
-// Base code: https://github.com/PaulStoffregen/TimeAlarms (v1.6.0)
-// Plus this changes: https://github.com/gmag11/TimeAlarms/commit/c8363f6ee96ad18e27f2b05460549c0157ab8956
-// Because of Alarm Problem on ESP8266: https://github.com/PaulStoffregen/TimeAlarms/issues/23
+#include "ESP8266TimeAlarms.h"// https://github.com/jhagberg/ESP8266TimeAlarms (fork/v1.5)
 #include <math.h> // https://www.arduino.cc/en/Reference/MathHeader
 
 
 // (bash) $ date "+%d.%m.%Y %H:%M:%S %s"
-const unsigned long BUILD_TIMESTAMP = 1641121439; // 02.01.2022 11:03:59 
-const String BUILD_VERSION_NAME = "0.2";
+const unsigned long BUILD_TIMESTAMP = 1641122818; // 02.01.2022 11:26:58 
+const String BUILD_VERSION_NAME = "0.3";
 
 const char *apHostname = "scheduler"; // http://scheduler.local
 const char *ssid = "AlarmScheduler-2022";
