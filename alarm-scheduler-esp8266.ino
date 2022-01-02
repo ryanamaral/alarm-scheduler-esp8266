@@ -20,8 +20,8 @@
 
 
 // (bash) $ date "+%d.%m.%Y %H:%M:%S %s"
-const unsigned long BUILD_TIMESTAMP = 1641111624; // 02.01.2022 08:20:24
-const String BUILD_VERSION_NAME = "0.1";
+const unsigned long BUILD_TIMESTAMP = 1641121439; // 02.01.2022 11:03:59 
+const String BUILD_VERSION_NAME = "0.2";
 
 const char *apHostname = "scheduler"; // http://scheduler.local
 const char *ssid = "AlarmScheduler-2022";
@@ -70,7 +70,6 @@ static uint8_t connectedClients = 0;
 #define MAX_LONG 1410065407 // 1410065407 is the MAX
 unsigned long lastLedStatusUpdateMillis = MAX_LONG;
 unsigned long lastTimestampsMillis = MAX_LONG;
-unsigned long lastAlarmTickMillis = MAX_LONG;
 
 int brightness = 0;
 int fadeAmount = 3;
@@ -150,10 +149,7 @@ void loop() {
     lastTimestampsMillis = now;
   }
 
-  if (now - lastAlarmTickMillis > 1000) {
-    Alarm.delay(0);
-    lastAlarmTickMillis = now;
-  }
+  Alarm.delay(0);
 }
 
 /**
@@ -516,16 +512,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
         webSocket.sendTXT(num, "Connected");
         break;
       }
-    case WStype_TEXT: {
-        Serial.println("<WebSocketEvent> Text");
-        break;
-      }
-    case WStype_BIN: {
-        Serial.print("<WebSocketEvent> Binary -> Length: ");
-        Serial.println(length);
-        hexdump(payload, length);
-        break;
-      }
+    default: break;
   }
 }
 
